@@ -1,0 +1,11 @@
+@channel SOLUTION FOR SECRET_KEY ERRORS IN SETTINGS.PY :point_down:
+Just sat with @Alex Lovegrove for a while as he had an error with .env variables not being available when trying to use them in settings.py.
+So we need to move the SECRET_KEY from settings.py into our .env file to avoid it being visible on a public github repo, but settings.py still requires a SECRET_KEY. Here's the solve:
+
+-Install python-dotenv: pip install python-dotenv
+-At the top of settings.py import os: import os
+-Also import load_dotenv: from dotenv import load_dotenv
+-Below this (can be anywhere but needs to be before you use any env variables) execute load_dotenv: load_dotenv()
+-Finally, when defining SECRET_KEY: SECRET_KEY = os.environ['SECRET_KEY']
+
+This should solve the error that SECRET_KEY is not defined, or potentially a KeyError being thrown when using os.getenv('SECRET_KEY')

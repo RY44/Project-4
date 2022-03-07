@@ -3,11 +3,9 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-
-
-# Models
 from .models import Post
 from .serializers.common import PostSerializer
+from .serializers.populated import PopulatedPostSerializer
 
 # Create your views here.
 
@@ -31,6 +29,7 @@ class AllPosts(APIView):
 
 
 class OnePost(APIView):
+    # add permission make sure user owns post
     def get_post(self, pk):
         try:
             return Post.objects.get(pk=pk)
@@ -39,5 +38,5 @@ class OnePost(APIView):
 
     def get(self, request, pk):
         post = self.get_post(pk)
-        serialized = PostSerializer(post)
+        serialized = PopulatedPostSerializer(post)
         return Response(serialized.data, status=status.HTTP_200_OK)
