@@ -6,13 +6,12 @@ from jwt_auth.models import User
 
 
 class Conversation(models.Model):
-    test = models.CharField(max_length=50, default=None)
+    test = models.CharField(max_length=50, default="test")
     post = models.ForeignKey(
         "post.Post",
         related_name="conversation",
         on_delete=models.CASCADE
     )
-
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE

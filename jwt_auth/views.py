@@ -1,8 +1,9 @@
-from rest_framework.views import APIView
 from django.contrib.auth import get_user_model
+from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .serializers.common import UserSerializer
 from django.conf import settings
 from datetime import datetime, timedelta
@@ -12,6 +13,30 @@ import jwt
 User = get_user_model()
 
 # Create your views here.
+
+
+class AllUsers(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get(self, _request):
+        users = User.objects.all()
+        serialized = UserSerializer(users, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
+
+class OneUser(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get_user(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except:
+            raise NotFound(detail="User not found")
+
+    def get(self, request, pk):
+        user = self.get_user(pk)
+        serialized = UserSerializer(user)
+        return Response(serialized.data, status=status.HTTP_200_OK)
 
 
 class RegisterView(APIView):

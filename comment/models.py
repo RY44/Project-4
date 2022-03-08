@@ -1,6 +1,6 @@
 from django.db import models
 from django.forms import CharField
-
+from jwt_auth.models import User
 # Create your models here.
 
 
@@ -9,5 +9,9 @@ class Comment(models.Model):
     conversation = models.ForeignKey(
         "conversation.Conversation",
         related_name="comment",
+        on_delete=models.CASCADE
+    )
+    owner = models.ForeignKey(
+        User,
         on_delete=models.CASCADE
     )
