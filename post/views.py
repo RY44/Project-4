@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import NotFound
+from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Post
@@ -40,3 +40,17 @@ class OnePost(APIView):
         post = self.get_post(pk)
         serialized = PopulatedPostSerializer(post)
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk):
+        try:
+            post_to_delete = Post.objects.get(pk=pk)
+            if post_to_delete.owner != request.user:
+                raise PermissionDenied(detail="Unauthorised")
+            post_to_delete.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Post.DoesNotExist:
+            raise NotFound(detail="Post not found")
+        except:
+            return Response({
+                "detail": "Failed to delete Post"
+            }, status=status.HTTP_401_UNAUTHORIZED)

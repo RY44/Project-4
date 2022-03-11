@@ -1,0 +1,48 @@
+.container {
+  display:flex;
+  justify-content: center;
+  .auth-form {
+    margin: 80px auto;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    --block-background-color:#a7a7a7;
+    color: white;
+    .error {
+      margin: 0;
+      color: rgb(233, 0, 0);
+      font-style: italic;
+      font-weight: 100;
+    }
+    .butt {
+      margin: 45px auto 0 auto;
+      color: white;
+      --block-background-color: rgb(79, 199, 79);
+    }
+    .disabled {
+      --block-background-color: rgba(64, 163, 64, 0.432);
+    }
+    p {
+      margin-left: 5px;
+    }
+    .link {
+      text-align: center;
+    }
+    a {
+      color: rgb(78, 78, 165);
+    }
+    .input-block > input {
+      --block-background-color: white;
+      color: black;
+      margin: 0;
+    }
+    
+  }
+}
+
+
+
+
+

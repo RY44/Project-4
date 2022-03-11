@@ -1,0 +1,18 @@
+nav {
+  height: 130px;
+  background-color: white;
+  margin-top: 10px;
+  // border-bottom: 8px solid rgb(22, 22, 22);
+  display: flex;
+  justify-content: center;
+  padding: 0 15px;
+  color: black;
+  div {
+    font-size: 12px;
+    margin-right: 20px;
+    a{
+      text-decoration: none;
+      color: white;
+    }
+  }
+}

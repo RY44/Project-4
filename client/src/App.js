@@ -8,12 +8,15 @@ import Conversation from './components/Conversation'
 import MakePost from './components/MakePost'
 import MyConversations from './components/MyConversations'
 import Nav from './components/Nav'
+import Footer from './components/Footer'
+import MyPost from './components/MyPost'
 
 function App() {
   
     return (
     <BrowserRouter>
       <Nav />
+      <Footer />
       <Routes>
         <Route path='/' element={<Welcome />} />
         <Route path='register' element={<Register />} />
@@ -22,7 +25,8 @@ function App() {
         <Route path='conversation/:id' element={<Conversation />} />
         <Route path='makepost' element={<MakePost />} />
         <Route path='myconversations' element={<MyConversations/>} />
-      </Routes>
+        <Route path='mypost/:id' element={<MyPost/>} />
+      </Routes>      
     </BrowserRouter>
   )
 }

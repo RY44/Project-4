@@ -37,7 +37,7 @@ const MakePost = () => {
     console.log('Current user -->' ,currentUser.id)
     setFormData(form)
     try {
-      const { data } = await axios.post('/api/post/', formData, {
+      const { data } = await axios.post('/api/post/', form, {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage()}`
         }
@@ -50,13 +50,15 @@ const MakePost = () => {
   
   return (
     <>
-      <form className="post-form">
+    <div className="container">
+      <form className="post-form wrapper block fixed">
         <div className="input-block">
           <p>What are you thinking about?</p>
-          <input onChange={handleChange}type="text" name="post_text" placeholder="enter your text..." />
+          <input className="block" onChange={handleChange}type="text" name="post_text" placeholder="enter your text..." maxLength='30' />
         </div>
-        <button onClick={handleSubmit} className="make-post">Make Post</button>
+        <button onClick={handleSubmit} className="block butt">Make Post</button>
       </form>
+    </div> 
     </>
   )
 }

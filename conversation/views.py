@@ -22,6 +22,9 @@ class AllConversations(APIView):
 
     def post(self, request):
         serialized = ConversationSerializer(data=request.data)
+        # user_convos = Conversation.objects.get(
+        #     owner=request.user.id, post=request.post)
+        # print('User convos -->', user_convos)
         try:
             serialized.is_valid()
             serialized.save()
@@ -59,8 +62,8 @@ class OneConversation(APIView):
             conversation_to_delete.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Conversation.DoesNotExist:
-            raise NotFound(detail="Review not found")
+            raise NotFound(detail="Conversation not found")
         except:
             return Response({
-                "detail": "Failed to delete Review"
+                "detail": "Failed to delete Conversation"
             }, status=status.HTTP_401_UNAUTHORIZED)

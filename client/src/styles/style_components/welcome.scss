@@ -1,0 +1,11 @@
+.auth-links {
+  width: 220px;
+  margin: 80px auto;
+  display: flex;
+  justify-content: space-between;
+  --block-background-color:rgb(179, 167, 61);
+  a {
+    --block-shadow-color: black;
+    --block-background-color:white;
+  }
+}

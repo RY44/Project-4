@@ -6,16 +6,16 @@ import { useNavigate, Link  } from 'react-router-dom'
 
 const Login = () => {
   const navigate = useNavigate()
-  const [formError, setFormError] = useState('')
+  const [formError, setFormError] = useState('False')
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: ''
   })
   
   const handleChange = (e) => {
     const newObj = { ...formData, [e.target.name]: e.target.value }
     setFormData(newObj)
-    // setFormError('')
+    setFormError('False')
   }
 
   const setTokenToLocalStorage = (token) => {
@@ -30,29 +30,31 @@ const Login = () => {
       navigate('/discover')
     } catch (err) {
       console.log(err.response)
-      setFormError(err.response.data.message)
-      console.log(formError)
+      setFormError('True')      
     }
   }
 
+  useEffect(() => {
+    console.log('Form error -->', formError)
+  }, [formError])
+
   return (
     <>
-    <form onSubmit={handleSubmit} className = "login-form">
-      <div className="input-block">
-        <p>Email</p>
-        <input onChange={handleChange} type="text" name="email" placeholder="enter email here..." />
-      </div>
-      <div className="input-block">
-        <p>Password</p>
-        <input onChange={handleChange} type="password" name="password" placeholder="enter password here..." />
-      </div>
-      <div className="input-block">
-        <p>Password Confirmation</p>
-        <input onChange={handleChange} type="password" name="password_confirmation" placeholder="renter password here..." />
-      </div>
-      <button className="submit-button">Submit</button>
-      <Link to={"./register"}><p>don't have an account?</p></Link>
-    </form>
+    <div className="container">
+      <form onSubmit={handleSubmit} className = "wrapper block fixed auth-form">
+        <div className="input-block">
+          <p>Email</p>
+          <input onChange={handleChange} className="block" type="text" name="email" placeholder="enter email here..." />         
+        </div>
+        <div className="input-block">
+          <p>Password</p>
+          <input onChange={handleChange} className="block" type="password" name="password" placeholder="enter password here..." />
+        </div>
+        {formError === 'True' && <p className="error">Check email or password</p>}
+        {!formData.email || !formData.password || formError === 'True' ? <button disabled className="block fixed butt disabled">Login</button> : <button className="block butt">Login</button>}        
+        <Link className="link" to={"../register"}><p>don't have an account?</p></Link>
+      </form>
+    </div>
     </>
   )
 

@@ -43,27 +43,30 @@ const Register = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className = "register-form">
+    <div className="container">
+      <form onSubmit={handleSubmit} className = "wrapper block fixed auth-form">
         <div className="input-block">
           <p>Username</p>
-          <input onChange={handleChange} type="text" name="username" placeholder="enter username here..." />
+          <input className="block" onChange={handleChange} type="text" name="username" placeholder="enter username here..." maxLength="10" />          
         </div>
         <div className="input-block">
           <p>Email</p>
-          <input onChange={handleChange} type="text" name="email" placeholder="enter email here..." />
+          <input className="block" onChange={handleChange} type="text" name="email" placeholder="enter email here..." />
+          {formData.email.length && !formData.email.includes("@") ? <p className="error">Please enter valid email</p> : <></>}
         </div>
         <div className="input-block">
           <p>Password</p>
-          <input onChange={handleChange} type="password" name="password" placeholder="enter password here..." />
+          <input className="block" onChange={handleChange} type="password" name="password" placeholder="enter password here..." />
         </div>
         <div className="input-block">
           <p>Password Confirmation</p>
-          <input onChange={handleChange} type="password" name="password_confirmation" placeholder="renter password here..." />
+          <input className="block" onChange={handleChange} type="password" name="password_confirmation" placeholder="renter password here..." />
+          {formData.password.length && formData.password_confirmation.length && formData.password !== formData.password_confirmation ? <p className="error">Passwords do not match!</p> : <></>}
         </div>
-        <button className="submit-button">Submit</button> 
-        <Link to={"./login"}><p>already have an account?</p></Link>
-
+        {!formData.email || !formData.password || !formData.username  ? <button disabled className="block fixed butt disabled">Submit</button> : <button className="block butt">Submit</button>}
+        <Link className="link" to={"../login"}><p>already have an account?</p></Link>
       </form>
+    </div>
     </>
   )
 }

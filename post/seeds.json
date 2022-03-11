@@ -1,0 +1,46 @@
+[
+{
+  "model": "post.post",
+  "pk": 1,
+  "fields": {
+    "post_text": "Strawberries get more credit than they deserve..",
+    "image_url": "imageURL",
+    "created_at": "2022-03-10T21:26:05.717Z",
+    "updated_at": "2022-03-10T21:26:45.845Z",
+    "owner": 7
+  }
+},
+{
+  "model": "post.post",
+  "pk": 2,
+  "fields": {
+    "post_text": "Buying stylish clothes for babies is a waste of mo",
+    "image_url": "imageURL",
+    "created_at": "2022-03-10T21:26:42.409Z",
+    "updated_at": "2022-03-10T21:26:53.877Z",
+    "owner": 8
+  }
+},
+{
+  "model": "post.post",
+  "pk": 3,
+  "fields": {
+    "post_text": "Christmas isn’t the best holiday Read more: https:",
+    "image_url": "imageURL",
+    "created_at": "2022-03-10T21:27:27.448Z",
+    "updated_at": "2022-03-10T21:27:27.448Z",
+    "owner": 6
+  }
+},
+{
+  "model": "post.post",
+  "pk": 4,
+  "fields": {
+    "post_text": "letter \"Q\" is not necessary and should go away",
+    "image_url": "imageURL",
+    "created_at": "2022-03-10T21:29:04.009Z",
+    "updated_at": "2022-03-10T21:29:04.009Z",
+    "owner": 5
+  }
+}
+]

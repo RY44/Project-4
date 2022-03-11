@@ -7,14 +7,11 @@ const Discover = () => {
   const navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState({})
   const [posts, setPosts] = useState([])
+  const [filPosts, setFilPosts] = useState([])
   const [post, setPost] = useState()
-  const [formData, setFormData] = useState({
-    post: 0,
-    owner: 0 
-  })
 
   useEffect(() => {
-    !userIsAuthenticated() && navigate('/') 
+    !userIsAuthenticated() && navigate('/login') 
     const getPosts = async () => {
       try {
         const { data } = await axios.get('/api/post/')
@@ -28,7 +25,7 @@ const Discover = () => {
         const payload = getPayload()
         const { data } = await axios.get(`/api/auth/user/${payload.sub}/`)
         setCurrentUser(data)
-        console.log('Current user -->',data)
+        // console.log('Current user -->',data)
       } catch (error) {
         console.log(error)
       }
@@ -38,26 +35,42 @@ const Discover = () => {
   },[])
 
   useEffect(() => {    
+    filterPosts()
+  }, [posts, currentUser])
+
+  useEffect(() => {
     onePost()
-  }, [posts])
+    console.log('Fil posts -->', filPosts)
+  }, [filPosts])
+
+  const filterPosts = () => {
+    let filArr = []
+    posts.forEach(post => {
+      if (post.owner !== currentUser.id) {
+        filArr.push(post)
+        console.log('Post -->', post)
+        console.log('Current user -->', currentUser.id)
+      }
+    })
+    setFilPosts(filArr)
+  }
 
   const onePost = () => {
-      let ranPost = posts[Math.floor(Math.random() * posts.length)]
-      // posts.splice(ranPost, 1)
-      setPost(ranPost)
-      console.log('Posts -->', posts)
+      let ranPost = filPosts[Math.floor(Math.random() * filPosts.length)]
+      // console.log('Ran post -->' , ranPost)
+      setPost(ranPost)    
+      // console.log('Posts -->', filPosts)
     }
 
   useEffect(() => {
-    console.log('Display Post -->', post)    
+    // console.log('Display Post -->', post)    
   }, [post])
 
   const startConvo = async () => {
-    const form = {...formData, test: "test", post: post.id, owner: currentUser.id}
-    setFormData(form)
-    console.log('Conversation Form -->',formData)
+    const form = { test: "test", post: post.id, owner: currentUser.id}
+    // console.log('Conversation Form -->',form)
     try {
-      const { data } = await axios.post('/api/conversation/', formData, {
+      const { data } = await axios.post('/api/conversation/', form, {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage()}`
         }
@@ -76,15 +89,22 @@ const Discover = () => {
     <>    
     {post ?
     <>
-      <div className="post-display" key={post.owner}>
-      <p>{post.post_text}</p>
-      </div>
-      <button onClick={onePost}>Skip</button>
-      <button onClick={startConvo}>Start Convo</button>
-      <button onClick={makePost}>Make post</button>
+      <div className="discover block fixed">
+        <div className="post-display" key={post.owner}>
+          <p className="block fixed">{post.post_text}</p>
+        </div>
+        <div className="button-container">
+          <button className="block inline skip"onClick={onePost}>Skip</button>
+          <button className="block inline start" onClick={startConvo}>Start Convo</button>
+          <button className="block inline post round" onClick={makePost}>Make post</button>
+        </div>
+      </div>  
     </>
       :
-      <p>No post</p>}
+      <div className="discover block fixed">
+        <p>No post</p>
+      </div>
+      }
     </>
   )
 }

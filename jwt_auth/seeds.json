@@ -1,0 +1,154 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$Q3PPliH8s3Yg54Aqnpeb6M$h/vzIfdVLqLQJQRi6RlCux+hu80+DiAms/hOde33PhI=",
+    "last_login": "2022-03-10T21:19:53.157Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:19:08.719Z",
+    "email": "admin@test.com",
+    "username": "admin",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:19:56Z",
+    "email": "user1@test.com",
+    "username": "leafdolphinasteroid",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:21:54Z",
+    "email": "user2@test.com",
+    "username": "highjumpingmilkshake",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:22:19Z",
+    "email": "user3@test.com",
+    "username": "neoflyinginsectcow",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:22:49Z",
+    "email": "user4@test.com",
+    "username": "lightningbrownbread",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:23:17Z",
+    "email": "user5@test.com",
+    "username": "mayonnaisesnakepuck5",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:24:06Z",
+    "email": "user6@test.com",
+    "username": "cyclingmessier63bass",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-03-10T21:24:51Z",
+    "email": "user7@test.com",
+    "username": "logfruitstickrocky33",
+    "image_url": "imageURL",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

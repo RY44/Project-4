@@ -1,0 +1,45 @@
+.card {
+  width: 350px;
+  margin: 10px auto 0 auto;
+  h4 {
+    color: white;
+    font-size: 17px;
+  }
+  .comment-list {
+    display: flex;
+    flex-direction: column;
+    .your-message {
+      margin-left: 50px;
+    }
+    .other-message {
+      margin-right: 200px;
+      margin-left: 0;
+    }
+    .comment-display {
+      overflow-wrap: break-word;
+      --block-background-color:white;
+      --block-shadow-color: black;
+      width: 220px;
+      .smaller-text {
+        font-size: 9px;
+      }
+    }
+  }
+  .button-container {
+    display: flex;
+    button {
+      --block-background-color:rgb(79, 199, 79);
+      --block-shadow-color: black;
+      color: white;
+    }
+    .red {
+      --block-background-color:red;
+    }
+  }
+}
+h4 {
+  text-align: center;
+}
+.grey-card {
+  --block-background-color:#a7a7a7;
+}

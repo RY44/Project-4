@@ -9,6 +9,7 @@ const Conversation = () => {
   const [ convo, setConvo ] = useState({})
   const [ comments, setComments ] = useState([])
   const [ currentUser, setCurrentUser ] = useState({})
+  const [ otherUser, setOtherUser ] = useState({})
   const [ postTopic, setPostTopic ] = useState('')
   const [ formData, setFormData ] = useState({
     comment: "",
@@ -16,18 +17,18 @@ const Conversation = () => {
     owner: 0
   })
 
-  useEffect(() => {
-    !userIsAuthenticated() && navigate('/') 
-    const getConversation = async () => {
+  const getConversation = async () => {
       try {
         const { data } = await axios.get(`/api/conversation/${id}/`)
-        console.log('Convo data -->', data)
+        // console.log('Convo data -->', data)
         setConvo(data)
       } catch (error) {
         console.log(error)
       }
     }
 
+  useEffect(() => {
+    !userIsAuthenticated() && navigate('/login')     
     const getCurrentUser = async () => {
       try {
         const payload = getPayload()
@@ -50,7 +51,7 @@ const Conversation = () => {
     const getPost = async () => {
       try {
         const { data } = await axios.get(`/api/post/${convo.post}`)
-        console.log('Post data -->', data)
+        // console.log('Post data -->', data)
         setPostTopic(data.post_text)
       } catch (error) {
         console.log(error)
@@ -60,22 +61,40 @@ const Conversation = () => {
   },[convo])
 
   useEffect(() => {
-    console.log('Comments state -->', comments)  
-    // console.log('Comment owner -->', comments[1].owner)
-  }, [comments])
+    const getOtherUser = async () => {
+      let val = 0
+      comments.forEach(comment => {
+        // console.log('Comment id -->', comment.owner)
+        // console.log('User id -->', currentUser.id)
+        if (comment.owner !== currentUser.id) {
+          val = comment.owner
+        } 
+        return val       
+      })
+      // console.log('Val -->', val)
+      try {
+        const { data } = await axios.get(`/api/auth/user/${val}/`)
+        console.log('Data -->', data)
+        setOtherUser(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getOtherUser()
+  }, [currentUser, comments])
 
   const addComment = async (e) => {
     e.preventDefault()
-    const form ={...formData, conversation: convo.id, owner: currentUser.id }
-    setFormData(form)
-    console.log('Comment form -->', form)
+    const form = {...formData,  conversation: convo.id, owner: currentUser.id }
+    // console.log('Comment form -->', form)
     try {
-      const { data } = await axios.post('/api/comment/', formData, {
+      const { data } = await axios.post('/api/comment/', form, {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage()}`
         }
       })
-      navigate('/discover')
+      document.querySelector('#message').value = ''
+      getConversation()
     } catch (error) {
       console.log(error)
     }
@@ -87,34 +106,62 @@ const Conversation = () => {
     setFormData(form)
   }
 
+  const deletePost = async (e) => {
+    navigate('/myconversations')
+      try {
+        const { data } = await axios.delete(`/api/conversation/${id}/`, {
+          headers: {
+            Authorization: `Bearer ${getTokenFromLocalStorage()}`
+          }
+        })
+        
+      } catch (error) {
+        console.log(error)
+      }
+      
+    }
+
   return (
     <>  
     {convo ?
     <>
-      {postTopic ? <h1>{postTopic}</h1> : <h1>This is where the post question goes</h1>}      
+      {postTopic ? <h4 className="card block fixed">{postTopic}</h4> : <h4 className="card block fixed">This is where the post question goes</h4>}      
       {comments ?
       <>
+      <div className="card grey-card block fixed">
         <h4>Messages</h4>        
         <ul className="comment-list">
           {comments.map((comment,index) => {
             return (
-              <div className="comment-display" key={index}>
+              <>
+              {currentUser.id === comment.owner ? 
+              <div className="comment-display your-message block fixed" key={index}>
                 <p>{comment.comment}</p>
-                {currentUser.id === comment.owner.id ? <p>`posted by you</p> : <p>Posted by other user </p> }
+                <p className="smaller-text">Posted by you</p>
               </div>
+              :
+              <div className="comment-display other-message block fixed" key={index}>
+                <p>{comment.comment}</p>
+                <p className="smaller-text">Posted by {otherUser.username}</p>
+              </div>
+              }
+              </>
             )
           })}
         </ul>
+      </div>  
       </>  
       :
       <>
-        <p>No messages yet</p>
       </>
       }
-      <form className="comment-input">
+      <form className="card block fixed">
         <p>Send your message</p>
-        <input onChange={changeComment} type="text" placeholder="type here..." />
-        <button onClick={addComment}className="comment-button">Send</button>
+        <input id="message" className="block" onChange={changeComment} type="text" placeholder="type here..." />
+        <div className="button-container">
+          <button className="block" onClick={addComment}>Send</button>
+          <button className="block red" onClick={deletePost} >Delete convo</button>
+        </div>
       </form>
       </>
       :

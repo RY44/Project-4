@@ -1,0 +1,31 @@
+.my-conversations {
+  width: 350px;
+  margin: 80px auto 0 auto;
+  .my-convos {
+    --block-background-color:#a7a7a7;
+  }
+  h1{
+    color: black;
+    --block-background-color:white;
+    text-align: center;
+  }
+  h4 {
+    color: black;
+    font-style: italic;
+    margin-left: 5px;
+    width: 40%;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  .convo-display {
+    --block-shadow-color: black;
+    --block-background-color:white;
+  }
+  .red {
+    color: white;
+    --block-background-color:red;
+    --block-shadow-color:black;
+  }
+}

@@ -1,0 +1,32 @@
+.discover {
+  width: 350px;
+  margin: 80px auto 0 auto;
+  padding: 15px;
+  --block-background-color:#a7a7a7;
+  .post-display {
+    font-size: 23px;
+    text-align: center;
+    --block-background-color:white;
+    --block-shadow-color: black;
+    overflow-wrap: break-word;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    button {
+      color: white;
+      margin: 15px 2px;
+    }
+    .start {
+      --block-background-color: green;
+    }
+    .skip {
+      --block-background-color: red;
+    }
+    .post {
+      color: black;
+      --block-background-color:white;
+    }
+  }
+  
+}
