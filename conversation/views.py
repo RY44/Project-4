@@ -21,6 +21,12 @@ class AllConversations(APIView):
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        conversations = Conversation.objects.filter(
+            owner=request.user.id, post=request.data['post'])
+        if conversations:
+            return Response({
+                "detail": "User has already started convo on this post"
+            }, status=status.HTTP_400_BAD_REQUEST)
         serialized = ConversationSerializer(data=request.data)
         # user_convos = Conversation.objects.get(
         #     owner=request.user.id, post=request.post)

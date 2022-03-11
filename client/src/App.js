@@ -10,14 +10,15 @@ import MyConversations from './components/MyConversations'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import MyPost from './components/MyPost'
+import { UserContextProvider } from './contexts/UserContext'
 
-function App() {
-  
+function App() {  
     return (
+  <UserContextProvider>
     <BrowserRouter>
       <Nav />
       <Footer />
-      <Routes>
+      <Routes>        
         <Route path='/' element={<Welcome />} />
         <Route path='register' element={<Register />} />
         <Route path='login' element={<Login />} />
@@ -28,6 +29,8 @@ function App() {
         <Route path='mypost/:id' element={<MyPost/>} />
       </Routes>      
     </BrowserRouter>
+  </UserContextProvider>
+
   )
 }
 

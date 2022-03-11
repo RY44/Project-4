@@ -20,7 +20,7 @@ const Discover = () => {
         console.log(error)
       }
     }
-    const getCurentUser = async () => {
+    const getCurrentUser = async () => {
       try {
         const payload = getPayload()
         const { data } = await axios.get(`/api/auth/user/${payload.sub}/`)
@@ -31,11 +31,19 @@ const Discover = () => {
       }
     }
     getPosts()
-    getCurentUser()
+    getCurrentUser()
   },[])
 
-  useEffect(() => {    
-    filterPosts()
+  useEffect(() => {
+    if (posts.length) {
+      let filterArr = []
+      posts.forEach(post => {
+        if (currentUser.id !== post.owner) {
+          filterArr.push(post)
+        }
+      })
+    setFilPosts(filterArr)
+    }    
   }, [posts, currentUser])
 
   useEffect(() => {
@@ -43,22 +51,16 @@ const Discover = () => {
     console.log('Fil posts -->', filPosts)
   }, [filPosts])
 
-  const filterPosts = () => {
-    let filArr = []
-    posts.forEach(post => {
-      if (post.owner !== currentUser.id) {
-        filArr.push(post)
-        console.log('Post -->', post)
-        console.log('Current user -->', currentUser.id)
-      }
-    })
-    setFilPosts(filArr)
-  }
-
-  const onePost = () => {
-      let ranPost = filPosts[Math.floor(Math.random() * filPosts.length)]
-      // console.log('Ran post -->' , ranPost)
-      setPost(ranPost)    
+  const onePost = (e) => {
+    // console.log('e -->', e)
+    console.log('fil posts length -->', filPosts.length)
+    if ((e === undefined && post) || (!filPosts.length)) return  
+    let ranNum = Math.floor(Math.random() * filPosts.length)
+    let ranPost = filPosts[ranNum]
+    filPosts.splice(ranNum, 1)      
+    // console.log('New fil posts -->' , newFilPosts)
+    setPost(ranPost) 
+    setFilPosts(filPosts)   
       // console.log('Posts -->', filPosts)
     }
 
@@ -87,7 +89,7 @@ const Discover = () => {
 
   return (
     <>    
-    {post ?
+    {post && filPosts.length > 0 ?
     <>
       <div className="discover block fixed">
         <div className="post-display" key={post.owner}>

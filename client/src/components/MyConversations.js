@@ -92,10 +92,10 @@ const MyConversations = () => {
           {filPosts.map((post, index) => {
             return (
               <>
-              <div className="convo-display block" key={index}>
+              {/* <div className="convo-display block" key={post.id}> */}
               {/* make into links */}
-                <Link to={`../mypost/${post.id}`}><p>{post.post_text}</p></Link>
-              </div>
+                <Link className="convo-display block" key={post.id} to={`../mypost/${post.id}`}><p>{post.post_text}</p></Link>
+              {/* </div> */}
               </>
             )
           })}
@@ -106,10 +106,10 @@ const MyConversations = () => {
           {conversations.map((convo, index) => {
             return (
               <>
-              <div className="convo-display block" key={index}>
+              {/* <div className="convo-display block" key={convo.id}> */}
               {/* make into links */}
-                <Link to={`../conversation/${convo.id}`}><p>{convo.postText}</p></Link>
-              </div>
+                <Link className="convo-display block" key={convo.id} to={`../conversation/${convo.id}`}><p>{convo.postText}</p></Link>
+              {/* </div> */}
               </>
             )
           })}

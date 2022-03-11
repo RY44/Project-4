@@ -62,22 +62,24 @@ const Conversation = () => {
 
   useEffect(() => {
     const getOtherUser = async () => {
-      let val = 0
-      comments.forEach(comment => {
-        // console.log('Comment id -->', comment.owner)
-        // console.log('User id -->', currentUser.id)
-        if (comment.owner !== currentUser.id) {
-          val = comment.owner
-        } 
-        return val       
-      })
-      // console.log('Val -->', val)
-      try {
-        const { data } = await axios.get(`/api/auth/user/${val}/`)
-        console.log('Data -->', data)
-        setOtherUser(data)
-      } catch (error) {
-        console.log(error)
+      if (comments) {
+        let val = 0
+        comments.forEach(comment => {
+          // console.log('Comment id -->', comment.owner)
+          // console.log('User id -->', currentUser.id)
+          if (comment.owner !== currentUser.id) {
+            val = comment.owner
+          } 
+          return val       
+        })
+        console.log('Val -->', val)
+        try {
+          const { data } = await axios.get(`/api/auth/user/${val}/`)
+          console.log('Data -->', data)
+          setOtherUser(data)
+        } catch (error) {
+          console.log(error)
+        }
       }
     }
     getOtherUser()
