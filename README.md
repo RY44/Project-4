@@ -3,21 +3,15 @@
 This full-stack app is a social media platform designed for sharing opinions and starting conversations with other users.
 
 ---
----
----
 
 ![App Screenshot](https://i.imgur.com/tOWVPjC.png)
 
----
----
 ---
 
 ### Brief
 Build a full-stack application using a Python Django API with a PostgreSQL database and implement
 a detailed plan with a wireframe and database map.
 
----
----
 ---
 
 ### Technologies
@@ -41,19 +35,11 @@ a detailed plan with a wireframe and database map.
 - Google Chrome dev Tools
 
 ---
----
----
-
 
 ### Project Info
 - Timeframe: 1 week 
 - Project type: Solo code***
 
----
----
----
----
----
 ---
 
 ## Process
@@ -62,21 +48,15 @@ a detailed plan with a wireframe and database map.
 - For the database plan, I used QuickDBD and was able map out my tables and their relationships.
 
 ---
----
----
 
 #### Excalidraw Wireframe
 ![App Screenshot](https://i.imgur.com/oSXkXfq.png)
 
 ---
----
----
 
 #### QuickDBD map
  ![App Screenshot](https://i.imgur.com/3zb1tZ8.png)
 
----
----
 ---
 
  ### Back-end
@@ -86,23 +66,19 @@ a detailed plan with a wireframe and database map.
     - The user will make one of many posts which can have many conversations. Each conversation can have many comments. 
  
 ---
----
----
 
  *Code snippet for populating conversation* 
+ 
  ![App Screenshot](https://i.imgur.com/FtTFJKR.png)
 
 - The comment model uses a foreign key to create the one-to-many relationship and will show all comments relating to a specified conversation when querying. The name of the key is determined by the related_name.
 
 ---
----
----
 
 *Code snippet for comment model*
+
 ![App Screenshot](https://i.imgur.com/xGepky5.png)
 
----
----
 ---
 
  - For the Auth "app", it inherits the AbstractUser class in the model. Was also able to add in password confirmation functionality inside the serializer. 
@@ -111,28 +87,20 @@ a detailed plan with a wireframe and database map.
  - Fully tested all the functionality of the backend using Insomina, such as making various requests and using secure routes by adding an auth header with a bearer token that is generated when a user logs in.
  
 ---
----
----
 
  *Code example for Post views*
+
 ![App Screenshot](https://i.imgur.com/IVYC7DR.png)
 
----
----
----
 ---
 
 ### Front-end
 - The front-end was started by creating a React app and setting up my folder structure. After importing all the components to App.js, I used BrowserRouter, Routes, and Route from react-router-dom to add dynamic routing.
 
 ---
----
----
 
 ![App Screenshot](https://i.imgur.com/jGZbecu.png)
 
----
----
 ---
 
 #### Discover page
@@ -144,9 +112,7 @@ a detailed plan with a wireframe and database map.
     - One for making a post that uses useNavigate.
 
 ---
----
----
- 
+
 #### Authentication pages
 - Created the auth pages using the blocks.css library inputs.
 - Added form error handling.
@@ -154,14 +120,11 @@ a detailed plan with a wireframe and database map.
 - Function on the login page that sets the token to local storage, which is then used when accessing secure routes.
 
 ---
----
----
 
 *Code example for authentication helpers*
+
 ![App Screenshot](https://i.imgur.com/nooFR1y.png)
 
----
----
 ---
 
 #### Convo page
@@ -171,13 +134,9 @@ a detailed plan with a wireframe and database map.
 - Button for deleting convo.
 
 ---
----
----
 
 ![App Screenshot](https://i.imgur.com/qhNoPfg.png)
 
----
----
 ---
 
 #### My convos page
@@ -185,26 +144,17 @@ a detailed plan with a wireframe and database map.
 - Each displayed element is a clickable link to that specific convo page 
 
 ---
----
----
 
 *Code example of getCurrentUser* 
+
 ![App Screenshot](https://i.imgur.com/z4i8FDX.png)
 - Used throughout the app where the currentUser data is required
 
----
----
 ---
 
 #### Make Post page
 - Another form page that sends a POST request to the API to appear on the discover page.
 
----
----
----
----
----
----
 ---
 
 ## Reflection
@@ -214,22 +164,16 @@ a detailed plan with a wireframe and database map.
 - Developed familiarity with using Django and Python.
 
 ---
----
----
 
 ### Challenges
 - Initially struggled with using Django as I had only had experience using Express prior.
 - Underestimated the time frame required to implement all the features I wanted.
 
 ---
----
----
 
 ### Known issues / Bugs
 - User can see posts made by themselves despite going through a filter function.
 
----
----
 ---
 
 ### Future Features
