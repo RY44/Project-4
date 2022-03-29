@@ -33,12 +33,15 @@ a detailed plan with a wireframe and database map.
 - Insomnia
 - GitHub
 - Google Chrome dev Tools
+#### Planning
+- Excalidraw
+- QuickDBD
 
 ---
 
 ### Project Info
 - Timeframe: 1 week 
-- Project type: Solo code***
+- Project type: Solo code
 
 ---
 
@@ -60,7 +63,7 @@ a detailed plan with a wireframe and database map.
 ---
 
  ### Back-end
- - Started by setting up django with all dependencies and linking up my database.
+ - Started by setting up Django with all dependencies and linking up my database.
  - Made 4 "apps" in total; post, conversation, comment and authentication as well as the models, views and serializers associated.
  - Created the series of one to many relationships between the "apps". 
     - The user will make one of many posts which can have many conversations. Each conversation can have many comments. 
@@ -83,7 +86,7 @@ a detailed plan with a wireframe and database map.
 
  - For the Auth "app", it inherits the AbstractUser class in the model. Was also able to add in password confirmation functionality inside the serializer. 
  - Overwritten the default User model by going into settings.py and adding "AUTH_USER_MODEL = 'jwt_auth.User'.
- - Went on to implement secure routes using "IsAuthenticatedOrReadOnly" from the django rest-framework.
+ - Went on to implement secure routes using "IsAuthenticatedOrReadOnly" from the Django rest-framework.
  - Fully tested all the functionality of the backend using Insomina, such as making various requests and using secure routes by adding an auth header with a bearer token that is generated when a user logs in.
  
 ---
@@ -116,7 +119,7 @@ a detailed plan with a wireframe and database map.
 #### Authentication pages
 - Created the auth pages using the blocks.css library inputs.
 - Added form error handling.
--  Uses onChange on inputs to write to state, which is then sent in a POST request when the form is submitted.
+- Uses onChange on inputs to write to state, which is then sent in a POST request when the form is submitted.
 - Function on the login page that sets the token to local storage, which is then used when accessing secure routes.
 
 ---
