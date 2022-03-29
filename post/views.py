@@ -29,7 +29,6 @@ class AllPosts(APIView):
 
 
 class OnePost(APIView):
-    # add permission make sure user owns post
     def get_post(self, pk):
         try:
             return Post.objects.get(pk=pk)

@@ -5,4 +5,3 @@ from jwt_auth.serializers.common import UserSerializer
 
 class PopulatedConversationSerializer(ConversationSerializer):
     comment = CommentSerializer(many=True)
-    # owner = UserSerializer(many=True)

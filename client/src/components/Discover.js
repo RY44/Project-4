@@ -35,7 +35,7 @@ const Discover = () => {
   },[])
 
   useEffect(() => {
-    if (posts.length) {
+    if (posts.length && currentUser.id !== 0) {
       let filterArr = []
       posts.forEach(post => {
         if (currentUser.id !== post.owner) {

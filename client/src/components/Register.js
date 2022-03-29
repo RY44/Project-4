@@ -63,7 +63,7 @@ const Register = () => {
           <input className="block" onChange={handleChange} type="password" name="password_confirmation" placeholder="renter password here..." />
           {formData.password.length && formData.password_confirmation.length && formData.password !== formData.password_confirmation ? <p className="error">Passwords do not match!</p> : <></>}
         </div>
-        {!formData.email || !formData.password || !formData.username  ? <button disabled className="block fixed butt disabled">Submit</button> : <button className="block butt">Submit</button>}
+        {!formData.email || !formData.password || !formData.username || formData.password !== formData.password_confirmation  ? <button disabled className="block fixed butt disabled">Submit</button> : <button className="block butt">Submit</button>}
         <Link className="link" to={"../login"}><p>already have an account?</p></Link>
       </form>
     </div>
