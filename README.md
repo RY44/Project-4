@@ -107,7 +107,7 @@ a detailed plan with a wireframe and database map.
 ---
 
 #### Discover page
-- Created the discover page by using axios to make a GET request from my backend and save to state.
+- Created the discover page by using Axios to make a GET request from my backend and save to state.
 - Made a function onePost that uses math.random to acquire one post from state and displays it in JSX.
 - Created 3 buttons
     - One with an eventListener to skip to the next post, which recalls onePost.
