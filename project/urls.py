@@ -16,8 +16,10 @@ Including another URLconf
 from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
+from .views import index
 
 urlpatterns = [
+    path('', index, name='index'),
     path('admin/', admin.site.urls),
     path('api/post/', include('post.urls')),
     path('api/auth/', include('jwt_auth.urls')),
