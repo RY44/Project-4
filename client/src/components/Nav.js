@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { getPayload } from './helper/authHelper.js'
 import { UserContext } from '../contexts/UserContext'
-// import logo from 'https://i.imgur.com/A9AbvU1.png'
+import logo from '../media/logo.png'
 
 const Nav = () => {
   const navigate = useNavigate()
